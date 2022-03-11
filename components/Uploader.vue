@@ -106,15 +106,6 @@ export default {
         });
       }
 
-      navigator.clipboard.writeText(imageUrl[0]);
-
-      this.$toast.show({
-        type: 'success',
-        title: 'Success!',
-        message: 'URL copied to clipboard!',
-        timeout: 5,
-      });
-
       this.imagesUploaded.push(imageUrl);
 
       this.uploading = false;
