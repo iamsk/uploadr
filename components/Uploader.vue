@@ -106,12 +106,12 @@ export default {
         });
       }
 
-      navigator.clipboard.writeText(imageUrl);
+      navigator.clipboard.writeText(imageUrl[0]);
 
       this.$toast.show({
         type: 'success',
         title: 'Success!',
-        message: 'Image URL copied to clipboard!',
+        message: 'URL copied to clipboard!',
         timeout: 5,
       });
 
@@ -124,9 +124,8 @@ export default {
 
       const uploadImage = await axios({
         method: 'POST',
-        url: 'https://api.imgur.com/3/image',
+        url: 'http://nft.wanggezhi.com/api/upload',
         headers: {
-          Authorization: 'Client-ID 63ed31625cb60f9',
           'Content-Type': 'multipart/form-data',
         },
         cancelToken: this.cancelTokenSource.token,
@@ -135,7 +134,7 @@ export default {
 
       if (!uploadImage) return null;
       else if (uploadImage === true) return true;
-      else return uploadImage.data.data.link;
+      else return [uploadImage.data.link, uploadImage.data.image];
     },
     onDrop(event) {
       console.log('a');
